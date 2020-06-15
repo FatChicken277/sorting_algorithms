@@ -27,4 +27,9 @@ void print_list(const listint_t *list);
 void bubble_sort(int *array, size_t size);
 void selection_sort(int *array, size_t size);
 
+void quick_sort(int *array, size_t size);
+	void quick_sort_recursion(int *array, size_t size, int left, int right);
+	int quick_sort_split(int *array, size_t size, int left, int right);
+	void swap_elements(int *array, size_t size, int *a, int *b);
+
 #endif
