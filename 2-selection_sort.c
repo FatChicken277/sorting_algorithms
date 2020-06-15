@@ -6,25 +6,35 @@
  */
 void selection_sort(int *array, size_t size)
 {
-	unsigned int i, j;
-	int min_idx, aux;
+	unsigned int current, pointer;
+	int min, result, aux;
 
-	for (i = 0; i < size - 1; i++)
+	if (array == NULL || size < 2)
+		return;
+
+	for (current = 0; current < size - 1; current++)
 	{
-		min_idx = i;
-
-		for (j = i + 1; j < size; j++)
+		result = 1;
+		for (pointer = current; pointer < size; pointer++)
 		{
-			if (array[j] < array[min_idx])
+			if (pointer == current)
+				min = current;
+			else
 			{
-				min_idx = j;
+				if (array[pointer] < array[min])
+				{
+					min = pointer;
+					result = 0;
+				}
 			}
 		}
+		if (result == 0)
+		{
+			aux = array[min];
+			array[min] = array[current];
+			array[current] = aux;
 
-		aux = array[min_idx];
-		array[min_idx] = array[i];
-		array[i] = aux;
-
-		print_array(array, size);
+			print_array(array, size);
+		}
 	}
 }
