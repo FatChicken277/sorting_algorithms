@@ -1,38 +1,33 @@
 #include "sort.h"
-
 /**
- * shell_sort - sorts an array of integers with shell sort algorithm.
- * @size: size of the array.
- * @array: array to sort.
+ * shell_sort - sort an array
+ * @array: array to sort
+ * @size: size of the array
  */
 void shell_sort(int *array, size_t size)
 {
-	unsigned int h = 1, i, aux;
-	int tmp, finish = 1;
+	int interval = 1, i, j, aux, sw;
 
 	if (array == NULL || size < 2)
-		return;
-
-	while (h < size)
-		h = 3 * h + 1;
-
-	for (h = (h - 1) / 3; h > 0; h = (aux - 1) / 3)
 	{
-		aux = h;
-i:
-		for (i = 0; i < size; i++, h++)
+		return;
+	}
+	for (interval = interval * 3 + 1; interval > 0; interval = (interval - 1) / 3)
+	{
+		sw = 1;
+		for (i = interval; i < (int)size; i++)
 		{
-			if (h < size && array[i] > array[h])
+			aux = array[i];
+			for (j = i; j >= interval && array[j - interval] > aux; j = j - interval)
 			{
-				tmp = array[i];
-				array[i] = array[h];
-				array[h] = tmp;
-				h = aux;
-				finish = 0;
-				goto i;
+				array[j] = array[j - interval];
+				sw = 0;
 			}
+			array[j] = aux;
 		}
-		if (finish == 0)
+		if (sw == 0)
+		{
 			print_array(array, size);
+		}
 	}
 }
