@@ -8,12 +8,12 @@
 void shell_sort(int *array, size_t size)
 {
 	unsigned int h = 1, i, aux;
-	int tmp, finish = 1;
+	int tmp;
 
 	if (array == NULL || size < 2)
 		return;
 
-	while (h < size / 3)
+	while (h <= size / 3)
 		h = 3 * h + 1;
 
 	for (; h > 0; h = (aux - 1) / 3)
@@ -28,11 +28,9 @@ i:
 				array[i] = array[h];
 				array[h] = tmp;
 				h = aux;
-				finish = 0;
 				goto i;
 			}
 		}
-		if (finish == 0)
-			print_array(array, size);
+		print_array(array, size);
 	}
 }
