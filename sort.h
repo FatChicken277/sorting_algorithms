@@ -29,6 +29,9 @@ void selection_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void shell_sort(int *array, size_t size);
 
+void counting_sort(int *array, size_t size);
+	int max_int(int *array, size_t size);
+
 void quick_sort(int *array, size_t size);
 	void quick_sort_recursion(int *array, size_t size, int left, int right);
 	int quick_sort_split(int *array, size_t size, int left, int right);
